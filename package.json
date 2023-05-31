@@ -4,6 +4,7 @@
   "description": "Snapshot testing plugin for Japa",
   "main": "./build/index.js",
   "files": [
+    "build",
     "build/index.js",
     "build/index.d.ts"
   ],
