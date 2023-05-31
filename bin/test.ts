@@ -25,7 +25,7 @@ configure({
   plugins: [
     snapshot(),
     assert(),
-    // runFailedTests(),
+    runFailedTests(),
     fileSystem({
       basePath: BASE_URL,
       autoClean: true,

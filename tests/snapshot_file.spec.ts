@@ -3,7 +3,7 @@ import { fsJoin, importUncached, testFactory } from '../tests_helpers'
 import { SnapshotFile } from '../src/snapshot_file'
 
 test.group('Snapshot file', () => {
-  test('should create new file with snapshot', async ({ assert, fs }) => {
+  test('should create new file with snapshot', async ({ assert }) => {
     const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const file = new SnapshotFile(fsJoin('foo.spec.ts'))
@@ -16,7 +16,7 @@ test.group('Snapshot file', () => {
     assert.deepEqual(content.default, { foo: '"foo"' })
   })
 
-  test('should append snapshot to existing file', async ({ assert, fs }) => {
+  test('should append snapshot to existing file', async ({ assert }) => {
     const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
     const test2 = testFactory({ title: 'bar', fileName: 'foo.spec.ts' })
 
@@ -31,7 +31,7 @@ test.group('Snapshot file', () => {
     assert.deepEqual(content.default, { foo: '"foo"', bar: '42' })
   })
 
-  test('should escape backticks in snapshot', async ({ assert, fs }) => {
+  test('should escape backticks in snapshot', async ({ assert }) => {
     const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const file = new SnapshotFile(fsJoin('foo.spec.ts'))
@@ -43,7 +43,7 @@ test.group('Snapshot file', () => {
     await assert.fileContains('__snapshots__/foo.spec.ts.cjs', 'foo \\`bar\\`')
   })
 
-  test('should surround string with double quotes and escape quotes', async ({ assert, fs }) => {
+  test('should surround string with double quotes and escape quotes', async ({ assert }) => {
     const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const file = new SnapshotFile(fsJoin('foo.spec.ts'))
@@ -55,7 +55,7 @@ test.group('Snapshot file', () => {
     await assert.fileContains('__snapshots__/foo.spec.ts.cjs', '"foo \\\\"bar\\\\""')
   })
 
-  test('with custom prettyFormat options', async ({ assert, fs }) => {
+  test('with custom prettyFormat options', async ({ assert }) => {
     const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const file = new SnapshotFile(fsJoin('foo.spec.ts'), {
