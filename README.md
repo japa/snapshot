@@ -1,53 +1,52 @@
-# @japa/expect-type
-> Write assertions for TypeScript types
+# @japa/snapshot
+
+> Snapshot testing plugin for Japa
 
 [![gh-workflow-image]][gh-workflow-url] [![npm-image]][npm-url] ![][typescript-image] [![license-image]][license-url] [![snyk-image]][snyk-url]
 
-The `expect-type` plugin of Japa helps you write assertions against the TypeScript types. There is no runtime behavior with the `expect-type` plugin and you need to compile your code to view the assertion errors.
+Snapshot testing plugin for Japa. This plugin allows you to write snapshot tests for your application.
 
-The plugins wraps [expect-type](https://www.npmjs.com/package/expect-type) under the hood.
-
-#### [Complete API documentation](https://japa.dev/docs/plugins/expect-type)
+#### [Complete API documentation](https://japa.dev/docs/plugins/snapshot)
 
 ## Installation
+
 Install the package from the npm registry as follows:
 
 ```sh
-npm i @japa/expect-type
+npm i @japa/snapshot
 
-yarn add @japa/expect-type
+pnpm i @japa/snapshot
+
+yarn add @japa/snapshot
 ```
 
 ## Usage
+
 You can use this package with the `@japa/runner` as follows.
 
 ```ts
-import { expectTypeOf } from '@japa/expect-type'
+import { snapshot } from '@japa/snapshot'
 import { configure } from '@japa/runner'
 
 configure({
-  plugins: [expectTypeOf()]
+  plugins: [snapshot()],
 })
 ```
 
-Once done, you will be able to access the `expectTypeOf` property on the test context.
+Once done, you will be able to access the `snapshot` property on the test context.
 
 ```ts
-test('test title', ({ expectTypeOf }) => {
-  expectTypeOf({ foo: 'bar' }).toEqualTypeOf<{ foo: string }>()
+test('test title', ({ snapshot }) => {
+  snapshot.expect('hello').toMatchSnapshot()
 })
 ```
 
-[gh-workflow-image]: https://img.shields.io/github/workflow/status/japa/expect-type/test?style=for-the-badge
-[gh-workflow-url]: https://github.com/japa/expect-type/actions/workflows/test.yml "Github action"
-
-[npm-image]: https://img.shields.io/npm/v/@japa/expect-type/latest.svg?style=for-the-badge&logo=npm
-[npm-url]: https://www.npmjs.com/package/@japa/expect-type/v/latest "npm"
-
+[gh-workflow-image]: https://img.shields.io/github/workflow/status/japa/snapshot/test?style=for-the-badge
+[gh-workflow-url]: https://github.com/japa/snapshot/actions/workflows/test.yml 'Github action'
+[npm-image]: https://img.shields.io/npm/v/@japa/snapshot/latest.svg?style=for-the-badge&logo=npm
+[npm-url]: https://www.npmjs.com/package/@japa/snapshot/v/latest 'npm'
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
-
 [license-url]: LICENSE.md
-[license-image]: https://img.shields.io/github/license/japa/expect-type?style=for-the-badge
-
-[snyk-image]: https://img.shields.io/snyk/vulnerabilities/github/japa/expect-type?label=Snyk%20Vulnerabilities&style=for-the-badge
-[snyk-url]: https://snyk.io/test/github/japa/expect-type?targetFile=package.json "snyk"
+[license-image]: https://img.shields.io/github/license/japa/snapshot?style=for-the-badge
+[snyk-image]: https://img.shields.io/snyk/vulnerabilities/github/japa/snapshot?label=Snyk%20Vulnerabilities&style=for-the-badge
+[snyk-url]: https://snyk.io/test/github/japa/snapshot?targetFile=package.json 'snyk'
