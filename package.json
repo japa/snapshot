@@ -89,6 +89,7 @@
       "prettier"
     ],
     "rules": {
+      "@typescript-eslint/explicit-member-accessibility": "off",
       "prettier/prettier": [
         "error",
         {

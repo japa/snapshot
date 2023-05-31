@@ -37,8 +37,8 @@ test.group('Using plugin', () => {
           fn2: function () {},
           fn3: async () => {},
           fn4: async function () {},
-          fn5: function (test: any) {
-            return test
+          fn5: function (foo: any) {
+            return foo
           },
         },
       })
@@ -89,8 +89,8 @@ test.group('Using plugin', () => {
         bar: 42,
         fn: () => {},
         fn2: function () {},
-        fn5: function (test: any) {
-          return test
+        fn5: function (foo: any) {
+          return foo
         },
       },
     }).toMatchInlineSnapshot(`

@@ -10,7 +10,7 @@ export class SnapshotManager {
   /**
    * Keep track of the different snapshot results/updates
    */
-  summary: {
+  public summary: {
     passed: number
     failed: number
     updated: number

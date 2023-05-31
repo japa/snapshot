@@ -5,20 +5,20 @@ import { testFactory } from '../tests_helpers'
 
 test.group('File Snapshotter', () => {
   test('should returns a snapshot file', async ({ assert }) => {
-    const test = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
+    const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const store = new FileSnapshotter()
-    const result = await store.getSnapshotFileForTest(test)
+    const result = store.getSnapshotFileForTest(test1)
     assert.instanceOf(result, SnapshotFile)
   })
 
   test('should returns the same snapshot file for the same test', async ({ assert }) => {
-    const test = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
+    const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const store = new FileSnapshotter()
 
-    const result1 = await store.getSnapshotFileForTest(test)
-    const result2 = await store.getSnapshotFileForTest(test)
+    const result1 = store.getSnapshotFileForTest(test1)
+    const result2 = store.getSnapshotFileForTest(test1)
 
     assert.instanceOf(result1, SnapshotFile)
     assert.instanceOf(result2, SnapshotFile)
@@ -31,8 +31,8 @@ test.group('File Snapshotter', () => {
 
     const store = new FileSnapshotter()
 
-    const result1 = await store.getSnapshotFileForTest(test1)
-    const result2 = await store.getSnapshotFileForTest(test2)
+    const result1 = store.getSnapshotFileForTest(test1)
+    const result2 = store.getSnapshotFileForTest(test2)
 
     assert.equal(result1, result2)
   })
@@ -43,8 +43,8 @@ test.group('File Snapshotter', () => {
 
     const store = new FileSnapshotter()
 
-    const result1 = await store.getSnapshotFileForTest(test1)
-    const result2 = await store.getSnapshotFileForTest(test2)
+    const result1 = store.getSnapshotFileForTest(test1)
+    const result2 = store.getSnapshotFileForTest(test2)
 
     assert.notEqual(result1, result2)
   })
