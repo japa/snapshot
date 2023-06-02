@@ -33,11 +33,15 @@ configure({
 })
 ```
 
-Once done, you will be able to access the `snapshot` property on the test context.
+Once done, you will be able to use the 2 new matchers added, either on expect or assert
 
 ```ts
-test('test title', ({ snapshot }) => {
-  snapshot.expect('hello').toMatchSnapshot()
+test('test title', ({ expect, assert }) => {
+  // with @japa/assert
+  assert.snapshot('1').match()
+
+  // with @japa/expect
+  expect('1').toMatchSnapshot()
 })
 ```
 
