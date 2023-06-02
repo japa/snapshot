@@ -1,6 +1,6 @@
 import { Test } from '@japa/runner'
 import { FileSnapshotter } from './file_snapshotter'
-import { InlineSnaphotter } from './inline_snapshotter'
+import { InlineSnaphotter } from './inline/inline_snapshotter'
 import { SnapshotPluginOptions } from './types/main'
 
 export class SnapshotManager {
@@ -35,8 +35,8 @@ export class SnapshotManager {
   /**
    * Update an inline snapshot
    */
-  updateInlineSnapshot(test: Test, value: any) {
-    this.#inlineSnapshotter.updateSnapshot(test, value)
+  updateInlineSnapshot(test: Test, value: any, matcher: 'expect' | 'assert') {
+    this.#inlineSnapshotter.updateSnapshot(test, value, matcher)
     this.summary.updated++
   }
 
@@ -46,36 +46,6 @@ export class SnapshotManager {
   updateFileSnapshot(test: Test, value: any) {
     this.#fileSnapshotter.updateSnapshot(test, value)
     this.summary.updated++
-  }
-
-  /**
-   * Compare the received value with the inline snapshot
-   */
-  compareInlineSnapshot(test: Test, received: any, expected: string) {
-    const pass = this.#inlineSnapshotter.compareSnapshot(test, received, expected)
-
-    if (pass) {
-      this.summary.passed++
-    } else {
-      this.summary.failed++
-    }
-
-    return pass
-  }
-
-  /**
-   * Compare the received value with the snapshot in the file
-   */
-  compareFileSnapshot(test: Test, received: any) {
-    const pass = this.#fileSnapshotter.compareSnapshot(test, received)
-
-    if (pass) {
-      this.summary.passed++
-    } else {
-      this.summary.failed++
-    }
-
-    return pass
   }
 
   /**

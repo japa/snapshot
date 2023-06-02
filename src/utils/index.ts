@@ -76,6 +76,8 @@ export function serializeSnapshotValue(value: any, options: PrettyFormatOptions 
 const IGNORED_FRAMES = [
   `${sep}node_modules${sep}`,
   `${sep}expect-snapshot${sep}src`,
+  `${sep}expect-snapshot${sep}index.ts`,
+  `${sep}expect-snapshot${sep}index.js`,
   `${sep}expect-snapshot${sep}build`,
 ]
 export function getTopFrame(lines: string[]) {
@@ -89,4 +91,13 @@ export function getTopFrame(lines: string[]) {
   }
 
   return null
+}
+
+export function isModuleInstalled(name: string) {
+  try {
+    require.resolve(name)
+    return true
+  } catch (e) {
+    return false
+  }
 }

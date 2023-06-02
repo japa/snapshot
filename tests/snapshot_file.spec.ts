@@ -71,7 +71,7 @@ test.group('Snapshot file', () => {
     )
   })
 
-  test('with custom snapshot resolver', async ({ assert, snapshot }) => {
+  test('with custom snapshot resolver', async ({ assert }) => {
     const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
 
     const file = new SnapshotFile(fsJoin('foo.spec.ts'), {
@@ -84,7 +84,7 @@ test.group('Snapshot file', () => {
     await assert.fileExists('foo.snap')
 
     const content = await importUncached(file.getSnapshotPath())
-    snapshot.expect(content.default).toMatchInlineSnapshot(`
+    assert.snapshot(content.default).matchInline(`
       {
         "foo": "\\"foo\\"",
       }

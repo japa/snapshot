@@ -1,26 +1,34 @@
 import './src/types/extended'
 
 import { PluginFn } from '@japa/runner'
-import { expectSnapshot } from './src/snapshot'
 import { SnapshotPluginOptions } from './src/types/main'
-import { SnapshotManager } from './src/snapshot_manager'
+import { PluginContext } from './src/plugin_context'
+import { isModuleInstalled } from './src/utils'
 
 /**
  * Snapshot plugin for Japa
  */
 export function snapshot(options: SnapshotPluginOptions = {}) {
-  const snapshotManager = new SnapshotManager(options)
+  PluginContext.init(options)
+
+  if (isModuleInstalled('@japa/assert')) {
+    require('./src/integrations/assert')
+  }
+
+  if (isModuleInstalled('@japa/expect')) {
+    require('./src/integrations/expect')
+  }
 
   const snapshotPlugin: PluginFn = function (config, _, { TestContext }) {
-    TestContext.getter('snapshot', function () {
-      return expectSnapshot(this, snapshotManager)
+    TestContext.created((ctx) => {
+      PluginContext.setCurrentTestContext(ctx)
     })
 
     /**
      * Save snapshots after all tests are done
      */
     config.teardown.push(async () => {
-      await snapshotManager.saveSnapshots()
+      await PluginContext.snapshotManager.saveSnapshots()
     })
   }
 

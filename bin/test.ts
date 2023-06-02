@@ -1,5 +1,6 @@
 import { assert } from '@japa/assert'
 import { specReporter } from '@japa/spec-reporter'
+import { expect } from '@japa/expect'
 import { runFailedTests } from '@japa/run-failed-tests'
 import { processCliArgs, configure, run } from '@japa/runner'
 import { fileSystem } from '@japa/file-system'
@@ -25,6 +26,7 @@ configure({
   plugins: [
     snapshot(),
     assert(),
+    expect(),
     runFailedTests(),
     fileSystem({
       basePath: BASE_URL,
