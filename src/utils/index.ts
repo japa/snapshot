@@ -75,11 +75,12 @@ export function serializeSnapshotValue(value: any, options: PrettyFormatOptions 
  */
 const IGNORED_FRAMES = [
   `${sep}node_modules${sep}`,
-  `${sep}expect-snapshot${sep}src`,
-  `${sep}expect-snapshot${sep}index.ts`,
-  `${sep}expect-snapshot${sep}index.js`,
-  `${sep}expect-snapshot${sep}build`,
+  `${sep}snapshot${sep}src`,
+  `${sep}snapshot${sep}index.ts`,
+  `${sep}snapshot${sep}index.js`,
+  `${sep}snapshot${sep}build`,
 ]
+
 export function getTopFrame(lines: string[]) {
   for (const line of lines) {
     if (IGNORED_FRAMES.some((frame) => line.includes(frame))) continue
