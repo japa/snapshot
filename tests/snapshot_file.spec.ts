@@ -13,7 +13,7 @@ test.group('Snapshot file', () => {
 
     await assert.fileExists('__snapshots__/foo.spec.ts.cjs')
     const content = await importUncached(file.getSnapshotPath())
-    assert.deepEqual(content.default, { foo: '"foo"' })
+    assert.deepEqual(content.default, { 'foo 1': '"foo"' })
   })
 
   test('should append snapshot to existing file', async ({ assert }) => {
@@ -28,7 +28,7 @@ test.group('Snapshot file', () => {
 
     await assert.fileExists('__snapshots__/foo.spec.ts.cjs')
     const content = await importUncached(file.getSnapshotPath())
-    assert.deepEqual(content.default, { foo: '"foo"', bar: '42' })
+    assert.deepEqual(content.default, { 'foo 1': '"foo"', 'bar 1': '42' })
   })
 
   test('should escape backticks in snapshot', async ({ assert }) => {
@@ -67,7 +67,7 @@ test.group('Snapshot file', () => {
 
     await assert.fileContains(
       '__snapshots__/foo.spec.ts.cjs',
-      'exports[`foo`] = `Object {\n  "fn": [Function hello],\n}`'
+      'exports[`foo 1`] = `Object {\n  "fn": [Function hello],\n}`'
     )
   })
 
@@ -86,7 +86,30 @@ test.group('Snapshot file', () => {
     const content = await importUncached(file.getSnapshotPath())
     assert.snapshot(content.default).matchInline(`
       {
-        "foo": "\\"foo\\"",
+        "foo 1": "\\"foo\\"",
+      }
+    `)
+  })
+
+  test('multiple snapshots in same test', async ({ assert }) => {
+    const test1 = testFactory({ title: 'foo', fileName: 'foo.spec.ts' })
+
+    const file = new SnapshotFile(fsJoin('foo.spec.ts'))
+
+    await file.updateSnapshot(test1, 'foo')
+    await file.updateSnapshot(test1, 'bar')
+    await file.updateSnapshot(test1, 'baz')
+
+    await file.saveSnapshots()
+
+    await assert.fileExists('__snapshots__/foo.spec.ts.cjs')
+
+    const content = await importUncached(file.getSnapshotPath())
+    assert.snapshot(content.default).matchInline(`
+      {
+        "foo 1": "\\"foo\\"",
+        "foo 2": "\\"bar\\"",
+        "foo 3": "\\"baz\\"",
       }
     `)
   })

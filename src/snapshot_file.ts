@@ -7,6 +7,12 @@ import { SnapshotPluginOptions } from './types/main'
 
 export class SnapshotFile {
   /**
+   * Counters for each test.
+   * Help to keep track of the number of snapshots in a test.
+   */
+  counters = new Map<string, number>()
+
+  /**
    * List of snapshots that will be saved/updated at the end of the tests
    */
   #snapshotsToSave: {
@@ -103,6 +109,22 @@ export class SnapshotFile {
   }
 
   /**
+   * Increment the counter for the given test
+   */
+  incrementTestCounter(test: Test) {
+    const testCounterKey = `${this.#testPath}:${test.title}`
+    this.counters.set(testCounterKey, (this.counters.get(testCounterKey) ?? 1) + 1)
+  }
+
+  /**
+   * Get the counter for the given test
+   */
+  getTestCounter(test: Test) {
+    const testCounterKey = `${this.#testPath}:${test.title}`
+    return this.counters.get(testCounterKey) ?? 1
+  }
+
+  /**
    * Generate a name for the named export for the given test
    */
   getSnapshotName(test: Test) {
@@ -113,6 +135,7 @@ export class SnapshotFile {
     }
 
     exportName += exportName ? ` > ${test.title}` : test.title
+    exportName += ` ${this.getTestCounter(test)}`
     return exportName
   }
 
@@ -141,6 +164,8 @@ export class SnapshotFile {
     const key = exportName
     const serializedValue = serializeSnapshotValue(value, this.#options.prettyFormatOptions)
 
+    this.incrementTestCounter(test)
+
     this.#snapshotsToSave.push({
       key: key,
       value: serializedValue,
@@ -163,6 +188,8 @@ export class SnapshotFile {
     if (!this.#cachedContent) {
       throw new Error(`Snapshot file ${this.#snapshotPath} not found`)
     }
+
+    this.incrementTestCounter(test)
 
     const expected = prepareExpected(this.#cachedContent[snapshotName])
     const received = serializeSnapshotValue(value, this.#options.prettyFormatOptions)

@@ -20,6 +20,12 @@ test.group('assert.matchSnapshot', () => {
   test('simple object', ({ assert }) => {
     assert.snapshot('foo').match()
   })
+
+  test('multiple snapshots', ({ assert }) => {
+    assert.snapshot('foo').match()
+    assert.snapshot('dfsdf').match()
+    assert.snapshot('baz').match()
+  })
 })
 
 test.group('assert.matchInlineSnapshot', () => {
@@ -45,6 +51,12 @@ test.group('assert.matchInlineSnapshot', () => {
         "foo": "bar",
       }
     `)
+  })
+
+  test('assert inline | muldsdsdtiple snapshots', ({ assert }) => {
+    assert.snapshot('foo').matchInline('"foo"')
+    assert.snapshot('bar').matchInline('"bar"')
+    assert.snapshot('baz').matchInline('"baz"')
   })
 })
 
