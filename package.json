@@ -96,15 +96,15 @@
   "eslintConfig": {
     "extends": "@adonisjs/eslint-config/package"
   },
-  "publishConfig": {
-    "access": "public",
-    "tag": "next"
-  },
   "prettier": "@adonisjs/prettier-config",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
   },
   "np": {
     "message": "chore(release): %s",
