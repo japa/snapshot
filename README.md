@@ -45,7 +45,7 @@ test('test title', ({ expect, assert }) => {
 })
 ```
 
-[gh-workflow-image]: https://img.shields.io/github/workflow/status/japa/snapshot/test?style=for-the-badge
+[gh-workflow-image]: https://img.shields.io/github/actions/workflow/status/japa/snapshot/test.yml?branch=main&style=for-the-badge
 [gh-workflow-url]: https://github.com/japa/snapshot/actions/workflows/test.yml 'Github action'
 [npm-image]: https://img.shields.io/npm/v/@japa/snapshot/latest.svg?style=for-the-badge&logo=npm
 [npm-url]: https://www.npmjs.com/package/@japa/snapshot/v/latest 'npm'
