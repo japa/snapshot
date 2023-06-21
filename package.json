@@ -1,7 +1,7 @@
 {
   "name": "@japa/snapshot",
   "description": "Snapshot testing plugin for Japa",
-  "version": "1.0.1-3",
+  "version": "2.0.0-0",
   "engines": {
     "node": ">=18.16.0"
   },
