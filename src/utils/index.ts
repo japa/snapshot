@@ -1,8 +1,9 @@
 import { Frame } from 'jest-message-util'
-import { sep } from 'path'
+import { sep } from 'node:path'
 import { PrettyFormatOptions } from 'pretty-format'
 import StackUtils from 'stack-utils'
 import { format as prettyFormat } from 'pretty-format'
+import { createRequire } from 'node:module'
 
 /**
  * stack utils tries to create pretty stack by making paths relative,
@@ -94,11 +95,15 @@ export function getTopFrame(lines: string[]) {
   return null
 }
 
-export function isModuleInstalled(name: string) {
+/**
+ * Check if a given module is installed
+ */
+export function isModuleInstalled(moduleName: string) {
+  const require = createRequire(import.meta.url)
   try {
-    require.resolve(name)
+    require.resolve(moduleName)
     return true
-  } catch (e) {
+  } catch (error) {
     return false
   }
 }

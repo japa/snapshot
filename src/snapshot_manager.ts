@@ -1,7 +1,7 @@
 import { Test } from '@japa/runner'
-import { FileSnapshotter } from './file_snapshotter'
-import { InlineSnaphotter } from './inline/inline_snapshotter'
-import { SnapshotPluginOptions } from './types/main'
+import { FileSnapshotter } from './file_snapshotter.js'
+import { InlineSnaphotter } from './inline/inline_snapshotter.js'
+import { SnapshotPluginOptions } from './types/main.js'
 
 export class SnapshotManager {
   #inlineSnapshotter: InlineSnaphotter
@@ -10,7 +10,7 @@ export class SnapshotManager {
   /**
    * Keep track of the different snapshot results/updates
    */
-  public summary: {
+  summary: {
     passed: number
     failed: number
     updated: number

@@ -1,5 +1,5 @@
 import { Assert } from '@japa/assert'
-import { PluginContext } from '../plugin_context'
+import { PluginContext } from '../plugin_context.js'
 
 /**
  * assert.snapshot method

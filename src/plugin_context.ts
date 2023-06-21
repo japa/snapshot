@@ -1,6 +1,6 @@
 import { TestContext } from '@japa/runner'
-import { SnapshotManager } from './snapshot_manager'
-import { SnapshotPluginOptions } from './types/main'
+import { SnapshotManager } from './snapshot_manager.js'
+import { SnapshotPluginOptions } from './types/main.js'
 
 export class PluginContext {
   static currentTestContext: TestContext | null

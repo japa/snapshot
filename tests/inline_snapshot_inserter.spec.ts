@@ -1,7 +1,7 @@
 import { test } from '@japa/runner'
 import dedent from 'dedent'
-import { InlineSnapshotInserter } from '../src/inline/inline_snapshot_inserter'
-import { serializeSnapshotValue } from '../src/utils'
+import { InlineSnapshotInserter } from '../src/inline/inline_snapshot_inserter.js'
+import { serializeSnapshotValue } from '../src/utils/index.js'
 
 test.group('Inline snapshot inserter | Regexes', () => {
   test('expect | simple string', async ({ expect }) => {

@@ -1,5 +1,5 @@
 import expect, { MatcherFunction } from 'expect'
-import { PluginContext } from '../plugin_context'
+import { PluginContext } from '../plugin_context.js'
 
 /**
  * expect('foo').toMatchInlineSnapshot() method
@@ -63,7 +63,7 @@ const expectMatchSnapshot: MatcherFunction<any> = function (value: any) {
 /**
  * Extends jest-expect with toMatchSnapshot and toMatchInlineSnapshot
  */
-expect.extend({
+expect.default.extend({
   toMatchSnapshot: expectMatchSnapshot,
   toMatchInlineSnapshot: expectMatchInlineSnapshot,
 })

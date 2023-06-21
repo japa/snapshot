@@ -1,8 +1,9 @@
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { Emitter, Refiner } from '@japa/core'
 import { Test } from '@japa/runner'
+import { fileURLToPath } from 'node:url'
 
-export const BASE_URL = join(__dirname, '..', 'tests', '__app')
+export const BASE_URL = join(dirname(fileURLToPath(import.meta.url)), '..', 'tests', '__app')
 
 /**
  * Create a new test instance for testing purposes
@@ -21,16 +22,4 @@ export function testFactory({ title, fileName }: { title: string; fileName?: str
  */
 export function fsJoin(path: string) {
   return join(BASE_URL, path)
-}
-
-/**
- * Require a fresh module by deleting it from the cache first
- *
- * Will not works after ESM migration
- * But keeping it for now for simplicity
- */
-export function importUncached(module: string) {
-  delete require.cache[require.resolve(module)]
-
-  return import(module)
 }

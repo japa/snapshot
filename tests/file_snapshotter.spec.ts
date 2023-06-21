@@ -1,7 +1,7 @@
 import { test } from '@japa/runner'
-import { SnapshotFile } from '../src/snapshot_file'
-import { FileSnapshotter } from '../src/file_snapshotter'
-import { testFactory } from '../tests_helpers'
+import { SnapshotFile } from '../src/snapshot_file.js'
+import { FileSnapshotter } from '../src/file_snapshotter.js'
+import { testFactory } from '../tests_helpers/index.js'
 
 test.group('File Snapshotter', () => {
   test('should returns a snapshot file', async ({ assert }) => {

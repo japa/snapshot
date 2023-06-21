@@ -2,8 +2,8 @@ import { Test } from '@japa/runner'
 import { existsSync, readFileSync } from 'node:fs'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
-import { backticked, prepareExpected, serializeSnapshotValue } from './utils'
-import { SnapshotPluginOptions } from './types/main'
+import { backticked, prepareExpected, serializeSnapshotValue } from './utils/index.js'
+import { SnapshotPluginOptions } from './types/main.js'
 
 export class SnapshotFile {
   /**

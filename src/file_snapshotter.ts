@@ -1,7 +1,7 @@
 import { Test } from '@japa/runner'
 import { basename, dirname, join } from 'node:path'
-import { SnapshotFile } from './snapshot_file'
-import { SnapshotPluginOptions } from './types/main'
+import { SnapshotFile } from './snapshot_file.js'
+import { SnapshotPluginOptions } from './types/main.js'
 
 export class FileSnapshotter {
   #files: Set<SnapshotFile> = new Set()

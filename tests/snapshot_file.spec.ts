@@ -1,6 +1,7 @@
 import { test } from '@japa/runner'
-import { fsJoin, importUncached, testFactory } from '../tests_helpers'
-import { SnapshotFile } from '../src/snapshot_file'
+import { fsJoin, testFactory } from '../tests_helpers/index.js'
+import { SnapshotFile } from '../src/snapshot_file.js'
+import { readFileSync } from 'node:fs'
 
 test.group('Snapshot file', () => {
   test('should create new file with snapshot', async ({ assert }) => {
@@ -12,8 +13,9 @@ test.group('Snapshot file', () => {
     await file.saveSnapshots()
 
     await assert.fileExists('__snapshots__/foo.spec.ts.cjs')
-    const content = await importUncached(file.getSnapshotPath())
-    assert.deepEqual(content.default, { 'foo 1': '"foo"' })
+    const content = readFileSync(file.getSnapshotPath(), 'utf-8')
+
+    assert.snapshot(content).match()
   })
 
   test('should append snapshot to existing file', async ({ assert }) => {
@@ -27,8 +29,9 @@ test.group('Snapshot file', () => {
     await file.saveSnapshots()
 
     await assert.fileExists('__snapshots__/foo.spec.ts.cjs')
-    const content = await importUncached(file.getSnapshotPath())
-    assert.deepEqual(content.default, { 'foo 1': '"foo"', 'bar 1': '42' })
+    const content = readFileSync(file.getSnapshotPath(), 'utf-8')
+
+    assert.snapshot(content).match()
   })
 
   test('should escape backticks in snapshot', async ({ assert }) => {
@@ -83,12 +86,8 @@ test.group('Snapshot file', () => {
 
     await assert.fileExists('foo.snap')
 
-    const content = await importUncached(file.getSnapshotPath())
-    assert.snapshot(content.default).matchInline(`
-      {
-        "foo 1": "\\"foo\\"",
-      }
-    `)
+    const content = readFileSync(file.getSnapshotPath(), 'utf-8')
+    assert.snapshot(content).match()
   })
 
   test('multiple snapshots in same test', async ({ assert }) => {
@@ -104,13 +103,7 @@ test.group('Snapshot file', () => {
 
     await assert.fileExists('__snapshots__/foo.spec.ts.cjs')
 
-    const content = await importUncached(file.getSnapshotPath())
-    assert.snapshot(content.default).matchInline(`
-      {
-        "foo 1": "\\"foo\\"",
-        "foo 2": "\\"bar\\"",
-        "foo 3": "\\"baz\\"",
-      }
-    `)
+    const content = readFileSync(file.getSnapshotPath(), 'utf-8')
+    assert.snapshot(content).match()
   })
 })

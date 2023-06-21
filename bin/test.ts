@@ -4,8 +4,9 @@ import { expect } from '@japa/expect'
 import { runFailedTests } from '@japa/run-failed-tests'
 import { processCliArgs, configure, run } from '@japa/runner'
 import { fileSystem } from '@japa/file-system'
-import { snapshot } from '../index'
-import { BASE_URL } from '../tests_helpers'
+import { snapshot } from '../index.js'
+import { BASE_URL } from '../tests_helpers/index.js'
+import { pathToFileURL } from 'node:url'
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ configure({
     }),
   ],
   reporters: [specReporter()],
-  importer: (filePath) => import(filePath),
+  importer: (filePath) => import(pathToFileURL(filePath).href),
 })
 
 /*

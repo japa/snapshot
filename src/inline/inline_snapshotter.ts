@@ -1,10 +1,10 @@
 import { Frame, getStackTraceLines } from 'jest-message-util'
-import { getTopFrame, prepareExpected, serializeSnapshotValue } from '../utils'
+import { getTopFrame, prepareExpected, serializeSnapshotValue } from '../utils/index.js'
 import { Test } from '@japa/runner'
-import { readFile, writeFile } from 'fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import dedent from 'dedent'
-import { InlineSnapshotData } from '../types/main'
-import { InlineSnapshotInserter } from './inline_snapshot_inserter'
+import { InlineSnapshotData } from '../types/main.js'
+import { InlineSnapshotInserter } from './inline_snapshot_inserter.js'
 
 export class InlineSnaphotter {
   #snapshotsToSave: InlineSnapshotData[] = []
