@@ -1,7 +1,8 @@
-name: test
+name: checks
 on:
   - push
   - pull_request
+
 jobs:
   test:
     uses: japa/.github/.github/workflows/test.yml@main
