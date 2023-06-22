@@ -26,6 +26,7 @@
     "build": "npm run compile",
     "release": "np --message=\"chore(release): %s\"",
     "version": "npm run build",
+    "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
