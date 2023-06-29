@@ -1,16 +1,15 @@
 import './src/types/extended.js'
 
-import { PluginFn } from '@japa/runner'
+import type { PluginFn } from '@japa/runner/types'
 import { SnapshotPluginOptions } from './src/types/main.js'
 import { PluginContext } from './src/plugin_context.js'
 import { isModuleInstalled } from './src/utils/index.js'
+import { Test } from '@japa/runner/core'
 
 /**
  * Snapshot plugin for Japa
  */
 export function snapshot(options: SnapshotPluginOptions = {}) {
-  PluginContext.init(options)
-
   if (isModuleInstalled('@japa/assert')) {
     import('./src/integrations/assert.js')
   }
@@ -19,9 +18,11 @@ export function snapshot(options: SnapshotPluginOptions = {}) {
     import('./src/integrations/expect.js')
   }
 
-  const snapshotPlugin: PluginFn = function (config, _, { TestContext }) {
-    TestContext.created((ctx) => {
-      PluginContext.setCurrentTestContext(ctx)
+  const snapshotPlugin: PluginFn = function ({ config, cliArgs }) {
+    PluginContext.init(options, cliArgs)
+
+    Test.executing((test) => {
+      PluginContext.setCurrentTestContext(test.context)
     })
 
     /**

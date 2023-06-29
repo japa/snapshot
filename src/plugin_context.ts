@@ -1,13 +1,17 @@
-import { TestContext } from '@japa/runner'
+import type { TestContext } from '@japa/runner/core'
 import { SnapshotManager } from './snapshot_manager.js'
 import { SnapshotPluginOptions } from './types/main.js'
+import { CLIArgs } from '@japa/runner/types'
 
 export class PluginContext {
   static currentTestContext: TestContext | null
   static snapshotManager: SnapshotManager
 
-  static init(options: SnapshotPluginOptions = {}) {
+  static #cliArgs: CLIArgs
+
+  static init(options: SnapshotPluginOptions = {}, cliArgs: CLIArgs) {
     this.snapshotManager = new SnapshotManager(options)
+    this.#cliArgs = cliArgs
   }
 
   static setCurrentTestContext(testContext: TestContext) {
@@ -15,6 +19,6 @@ export class PluginContext {
   }
 
   static shouldUpdateSnapshots() {
-    return process.argv.includes('-u') || process.argv.includes('--update-snapshots')
+    return this.#cliArgs.u || this.#cliArgs['update-snapshots']
   }
 }

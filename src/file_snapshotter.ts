@@ -1,4 +1,4 @@
-import { Test } from '@japa/runner'
+import type { Test } from '@japa/runner/core'
 import { basename, dirname, join } from 'node:path'
 import { SnapshotFile } from './snapshot_file.js'
 import { SnapshotPluginOptions } from './types/main.js'

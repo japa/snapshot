@@ -1,4 +1,4 @@
-import { Test } from '@japa/runner'
+import type { Test } from '@japa/runner/core'
 import { FileSnapshotter } from './file_snapshotter.js'
 import { InlineSnaphotter } from './inline/inline_snapshotter.js'
 import { SnapshotPluginOptions } from './types/main.js'

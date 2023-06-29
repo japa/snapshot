@@ -1,6 +1,6 @@
+import type { Test } from '@japa/runner/core'
 import { Frame, getStackTraceLines } from 'jest-message-util'
 import { getTopFrame, prepareExpected, serializeSnapshotValue } from '../utils/index.js'
-import { Test } from '@japa/runner'
 import { readFile, writeFile } from 'node:fs/promises'
 import dedent from 'dedent'
 import { InlineSnapshotData } from '../types/main.js'

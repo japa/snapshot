@@ -1,4 +1,4 @@
-import { Test } from '@japa/runner'
+import type { Test } from '@japa/runner/core'
 import { existsSync, readFileSync } from 'node:fs'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
