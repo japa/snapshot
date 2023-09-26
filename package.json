@@ -76,7 +76,7 @@
       "optional": true
     }
   },
-  "author": "Julien Ripouteau <julien@ripouteau.com>",
+  "author": "japa, Julien Ripouteau <julien@ripouteau.com>",
   "license": "MIT",
   "homepage": "https://github.com/japa/snapshot#readme",
   "repository": {
