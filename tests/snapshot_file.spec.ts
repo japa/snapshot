@@ -1,7 +1,8 @@
 import { test } from '@japa/runner'
-import { fsJoin, testFactory } from '../tests_helpers/index.js'
-import { SnapshotFile } from '../src/snapshot_file.js'
 import { readFileSync } from 'node:fs'
+
+import { SnapshotFile } from '../src/snapshot_file.js'
+import { fsJoin, testFactory } from '../tests_helpers/index.js'
 
 test.group('Snapshot file', () => {
   test('should create new file with snapshot', async ({ assert }) => {

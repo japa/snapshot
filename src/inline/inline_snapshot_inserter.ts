@@ -1,7 +1,7 @@
 import BaseMagicString from 'magic-string'
 import { FilePosition, InlineSnapshotData } from '../types/main.js'
 
-const MagicString = BaseMagicString as unknown as typeof BaseMagicString.default
+const MagicString = BaseMagicString
 
 export class InlineSnapshotInserter {
   /**
@@ -94,7 +94,7 @@ export class InlineSnapshotInserter {
   static #overwriteSnapshot(
     quote: string,
     startIndex: number,
-    magicString: BaseMagicString.default,
+    magicString: BaseMagicString,
     snapString: string
   ) {
     const quoteEndRE = new RegExp(`(?:^|[^\\\\])${quote}`)

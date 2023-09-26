@@ -1,7 +1,6 @@
 import { dirname, join } from 'node:path'
-import { Emitter, Refiner } from '@japa/core'
-import { Test } from '@japa/runner/core'
 import { fileURLToPath } from 'node:url'
+import { Test, Emitter, Refiner } from '@japa/runner/core'
 
 export const BASE_URL = join(dirname(fileURLToPath(import.meta.url)), '..', 'tests', '__app')
 
