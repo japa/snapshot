@@ -1,10 +1,18 @@
-import './src/types/extended.js'
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+import { Test } from '@japa/runner/core'
 import type { PluginFn } from '@japa/runner/types'
-import { SnapshotPluginOptions } from './src/types/main.js'
+
 import { PluginContext } from './src/plugin_context.js'
 import { isModuleInstalled } from './src/utils/index.js'
-import { Test } from '@japa/runner/core'
+import { SnapshotPluginOptions } from './src/types/main.js'
 
 /**
  * Snapshot plugin for Japa

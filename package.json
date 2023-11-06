@@ -7,10 +7,10 @@
   },
   "type": "module",
   "files": [
-    "build/src",
-    "build/index.d.ts",
-    "build/index.js",
-    "build/index.d.ts.map"
+    "build",
+    "!build/bin",
+    "!build/tests",
+    "!build/tests_helpers"
   ],
   "exports": {
     ".": "./build/index.js",
@@ -20,7 +20,8 @@
     "pretest": "npm run lint",
     "test": "c8 npm run quick:test",
     "clean": "del-cli build",
-    "compile": "npm run lint && npm run clean && tsc",
+    "precompile": "npm run lint && npm run clean",
+    "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
     "build": "npm run compile",
     "release": "np",
     "version": "npm run build",
@@ -54,6 +55,7 @@
     "np": "^8.0.4",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
+    "tsup": "^7.2.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
@@ -117,5 +119,17 @@
     "exclude": [
       "tests/**"
     ]
+  },
+  "tsup": {
+    "entry": [
+      "./index.ts",
+      "./src/types/main.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": false,
+    "sourcemap": true,
+    "target": "esnext"
   }
 }
