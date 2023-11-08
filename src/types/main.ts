@@ -1,4 +1,4 @@
-import { PrettyFormatOptions } from 'pretty-format'
+import type { PrettyFormatOptions } from 'pretty-format'
 
 /**
  * Options accepted by the snapshot plugin
