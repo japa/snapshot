@@ -21,10 +21,10 @@
     "pretest": "npm run lint",
     "test": "c8 npm run quick:test",
     "clean": "del-cli build",
-    "precompile": "npm run lint && npm run clean",
+    "precompile": "npm run lint",
     "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
     "build": "npm run compile",
-    "release": "np",
+    "release": "release-it",
     "version": "npm run build",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build",
@@ -41,6 +41,7 @@
     "@japa/expect": "^3.0.2",
     "@japa/file-system": "^2.3.0",
     "@japa/runner": "^3.1.4",
+    "@release-it/conventional-changelog": "^8.0.2",
     "@swc/core": "^1.7.26",
     "@types/dedent": "^0.7.2",
     "@types/node": "^20.16.5",
@@ -51,6 +52,7 @@
     "expect": "^29.7.0",
     "github-label-sync": "^2.3.1",
     "prettier": "^3.3.3",
+    "release-it": "^17.6.0",
     "ts-node-maintained": "^10.9.4",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
@@ -95,6 +97,30 @@
     "exclude": [
       "tests/**"
     ]
+  },
+  "release-it": {
+    "git": {
+      "requireCleanWorkingDir": true,
+      "requireUpstream": true,
+      "commitMessage": "chore(release): ${version}",
+      "tagAnnotation": "v${version}",
+      "push": true,
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": true,
+      "skipChecks": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "angular"
+        }
+      }
+    }
   },
   "tsup": {
     "entry": [
