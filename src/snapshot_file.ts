@@ -196,8 +196,8 @@ export class SnapshotFile {
 
     return {
       snapshotName,
-      expected: prepareExpected(this.#cachedContent[snapshotName]),
-      received: serializeSnapshotValue(received, this.#options.prettyFormatOptions),
+      expected,
+      received,
       pass: expected === received,
     }
   }
