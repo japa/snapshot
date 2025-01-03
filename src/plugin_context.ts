@@ -1,7 +1,17 @@
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+import type { CLIArgs } from '@japa/runner/types'
 import type { TestContext } from '@japa/runner/core'
+
+import type { SnapshotPluginOptions } from './types.js'
 import { SnapshotManager } from './snapshot_manager.js'
-import { SnapshotPluginOptions } from './types/main.js'
-import { CLIArgs } from '@japa/runner/types'
 
 export class PluginContext {
   static currentTestContext: TestContext | null

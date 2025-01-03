@@ -1,7 +1,17 @@
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import type { Test } from '@japa/runner/core'
+
+import type { SnapshotPluginOptions } from './types.js'
 import { FileSnapshotter } from './file_snapshotter.js'
 import { InlineSnaphotter } from './inline/inline_snapshotter.js'
-import { SnapshotPluginOptions } from './types/main.js'
 
 export class SnapshotManager {
   #inlineSnapshotter: InlineSnaphotter

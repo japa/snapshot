@@ -1,7 +1,16 @@
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import type { Test } from '@japa/runner/core'
 import { basename, dirname, join } from 'node:path'
 import { SnapshotFile } from './snapshot_file.js'
-import { SnapshotPluginOptions } from './types/main.js'
+import type { SnapshotPluginOptions } from './types.js'
 
 export class FileSnapshotter {
   #files: Set<SnapshotFile> = new Set()

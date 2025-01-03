@@ -1,7 +1,14 @@
-import BaseMagicString from 'magic-string'
-import { FilePosition, InlineSnapshotData } from '../types/main.js'
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-const MagicString = BaseMagicString
+import BaseMagicString from 'magic-string'
+import type { FilePosition, InlineSnapshotData } from '../types.js'
 
 export class InlineSnapshotInserter {
   /**
@@ -111,7 +118,7 @@ export class InlineSnapshotInserter {
    * Insert the given snapshot in the code. Returns the modified code
    */
   static insert(code: string, snapshots: InlineSnapshotData[]) {
-    const magicString = new MagicString(code)
+    const magicString = new BaseMagicString(code)
 
     for (const snapshot of snapshots) {
       const { frame, value, matcher } = snapshot

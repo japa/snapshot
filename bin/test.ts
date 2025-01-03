@@ -3,7 +3,7 @@ import { expect } from '@japa/expect'
 import { configure, processCLIArgs, run } from '@japa/runner'
 import { fileSystem } from '@japa/file-system'
 import { snapshot } from '../index.js'
-import { BASE_URL } from '../tests_helpers/index.js'
+import { BASE_URL } from '../tests/helpers.js'
 
 /*
 |--------------------------------------------------------------------------

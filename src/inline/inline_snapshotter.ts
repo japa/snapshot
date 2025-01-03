@@ -1,10 +1,20 @@
-import type { Test } from '@japa/runner/core'
-import { Frame, getStackTraceLines } from 'jest-message-util'
-import { getTopFrame, prepareExpected, serializeSnapshotValue } from '../utils/index.js'
-import { readFile, writeFile } from 'node:fs/promises'
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import dedent from 'dedent'
-import { InlineSnapshotData } from '../types/main.js'
+import type { Test } from '@japa/runner/core'
+import { readFile, writeFile } from 'node:fs/promises'
+import { Frame, getStackTraceLines } from 'jest-message-util'
+
+import type { InlineSnapshotData } from '../types.js'
 import { InlineSnapshotInserter } from './inline_snapshot_inserter.js'
+import { getTopFrame, prepareExpected, serializeSnapshotValue } from '../utils.js'
 
 export class InlineSnaphotter {
   #snapshotsToSave: InlineSnapshotData[] = []

@@ -10,9 +10,9 @@
 import { Test } from '@japa/runner/core'
 import type { PluginFn } from '@japa/runner/types'
 
+import { isModuleInstalled } from './src/utils.js'
 import { PluginContext } from './src/plugin_context.js'
-import { isModuleInstalled } from './src/utils/index.js'
-import { SnapshotPluginOptions } from './src/types/main.js'
+import type { SnapshotPluginOptions } from './src/types.js'
 
 /**
  * Extend the Assert interface to add the snapshot method

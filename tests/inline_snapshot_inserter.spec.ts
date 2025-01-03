@@ -1,7 +1,16 @@
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import dedent from 'dedent'
 import { test } from '@japa/runner'
 
-import { serializeSnapshotValue } from '../src/utils/index.js'
+import { serializeSnapshotValue } from '../src/utils.js'
 import { InlineSnapshotInserter } from '../src/inline/inline_snapshot_inserter.js'
 
 test.group('Inline snapshot inserter | Regexes', () => {

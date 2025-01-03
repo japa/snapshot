@@ -1,9 +1,18 @@
-import { Frame } from 'jest-message-util'
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import { sep } from 'node:path'
-import { PrettyFormatOptions } from 'pretty-format'
 import StackUtils from 'stack-utils'
-import { format as prettyFormat } from 'pretty-format'
+import { Frame } from 'jest-message-util'
 import { createRequire } from 'node:module'
+import { PrettyFormatOptions } from 'pretty-format'
+import { format as prettyFormat } from 'pretty-format'
 
 /**
  * stack utils tries to create pretty stack by making paths relative,

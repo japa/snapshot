@@ -1,9 +1,19 @@
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import type { Test } from '@japa/runner/core'
 import { existsSync, readFileSync } from 'node:fs'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
-import { backticked, prepareExpected, serializeSnapshotValue } from './utils/index.js'
-import { SnapshotPluginOptions } from './types/main.js'
+
+import type { SnapshotPluginOptions } from './types.js'
+import { backticked, prepareExpected, serializeSnapshotValue } from './utils.js'
 
 export class SnapshotFile {
   /**

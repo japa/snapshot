@@ -1,8 +1,17 @@
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 import { test } from '@japa/runner'
 import { readFileSync } from 'node:fs'
 
 import { SnapshotFile } from '../src/snapshot_file.js'
-import { fsJoin, testFactory } from '../tests_helpers/index.js'
+import { fsJoin, testFactory } from './helpers.js'
 
 test.group('Snapshot file', () => {
   test('should create new file with snapshot', async ({ assert }) => {

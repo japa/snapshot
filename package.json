@@ -5,23 +5,21 @@
   "engines": {
     "node": ">=18.16.0"
   },
-  "main": "build/index.js",
   "type": "module",
   "files": [
     "build",
     "!build/bin",
-    "!build/tests",
-    "!build/tests_helpers"
+    "!build/tests"
   ],
   "exports": {
     ".": "./build/index.js",
-    "./types": "./build/src/types/main.js"
+    "./types": "./build/src/types.js"
   },
   "scripts": {
     "pretest": "npm run lint",
     "test": "c8 npm run quick:test",
     "clean": "del-cli build",
-    "precompile": "npm run lint",
+    "precompile": "npm run lint && npm run clean",
     "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
     "build": "npm run compile",
     "release": "release-it",
@@ -30,7 +28,6 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint",
     "format": "prettier --write .",
-    "sync-labels": "github-label-sync --labels .github/labels.json japa/snapshot",
     "quick:test": "node --import=ts-node-maintained/register/esm bin/test.ts"
   },
   "devDependencies": {
@@ -50,7 +47,6 @@
     "del-cli": "^6.0.0",
     "eslint": "^9.17.0",
     "expect": "^29.7.0",
-    "github-label-sync": "^2.3.1",
     "prettier": "^3.4.2",
     "release-it": "^17.11.0",
     "ts-node-maintained": "^10.9.4",
@@ -65,7 +61,7 @@
     "stack-utils": "^2.0.6"
   },
   "peerDependencies": {
-    "@japa/assert": "^2.0.0 || ^3.0.0",
+    "@japa/assert": "^2.0.0 || ^3.0.0 || ^4.0.0",
     "@japa/expect": "^3.0.2",
     "@japa/runner": "^3.1.2"
   },
@@ -77,8 +73,6 @@
       "optional": true
     }
   },
-  "author": "japa, Julien Ripouteau <julien@ripouteau.com>",
-  "license": "MIT",
   "homepage": "https://github.com/japa/snapshot#readme",
   "repository": {
     "type": "git",
@@ -87,16 +81,28 @@
   "bugs": {
     "url": "https://github.com/japa/snapshot/issues"
   },
-  "keywords": [],
-  "prettier": "@adonisjs/prettier-config",
-  "c8": {
-    "reporter": [
-      "text",
-      "html"
+  "keywords": [
+    "japa",
+    "snapshot",
+    "snapshot-testing"
+  ],
+  "author": "japa, Julien Ripouteau <julien@ripouteau.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "tsup": {
+    "entry": [
+      "./index.ts",
+      "./src/types.ts"
     ],
-    "exclude": [
-      "tests/**"
-    ]
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": false,
+    "sourcemap": false,
+    "target": "esnext"
   },
   "release-it": {
     "git": {
@@ -122,16 +128,14 @@
       }
     }
   },
-  "tsup": {
-    "entry": [
-      "./index.ts",
-      "./src/types/main.ts"
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
     ],
-    "outDir": "./build",
-    "clean": true,
-    "format": "esm",
-    "dts": false,
-    "sourcemap": true,
-    "target": "esnext"
-  }
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "prettier": "@adonisjs/prettier-config"
 }
