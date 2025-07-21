@@ -1,4 +1,13 @@
-import expect, { MatcherFunction } from 'expect'
+/*
+ * @japa/snapshot
+ *
+ * (c) Japa
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+import { expect, MatcherFunction } from 'expect'
 import { PluginContext } from '../plugin_context.js'
 
 /**
@@ -63,7 +72,7 @@ const expectMatchSnapshot: MatcherFunction<any> = function (value: any) {
 /**
  * Extends jest-expect with toMatchSnapshot and toMatchInlineSnapshot
  */
-expect.default.extend({
+expect.extend({
   toMatchSnapshot: expectMatchSnapshot,
   toMatchInlineSnapshot: expectMatchInlineSnapshot,
 })
