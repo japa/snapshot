@@ -20,7 +20,7 @@
     "test": "c8 npm run quick:test",
     "clean": "del-cli build",
     "precompile": "npm run lint && npm run clean",
-    "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
+    "compile": "tsdown && tsc --emitDeclarationOnly --declaration",
     "build": "npm run compile",
     "release": "release-it",
     "version": "npm run build",
@@ -36,7 +36,7 @@
     "@adonisjs/tsconfig": "^2.0.0-next.3",
     "@japa/assert": "^4.2.0",
     "@japa/expect": "^3.0.7",
-    "@japa/file-system": "^2.3.2",
+    "@japa/file-system": "^3.0.0",
     "@japa/runner": "^5.0.0",
     "@poppinss/ts-exec": "^1.4.1",
     "@release-it/conventional-changelog": "^10.0.3",
@@ -49,7 +49,7 @@
     "expect": "^30.2.0",
     "prettier": "^3.7.4",
     "release-it": "^19.1.0",
-    "tsup": "^8.5.1",
+    "tsdown": "^0.17.3",
     "typescript": "^5.9.3"
   },
   "dependencies": {
@@ -91,7 +91,7 @@
     "access": "public",
     "provenance": true
   },
-  "tsup": {
+  "tsdown": {
     "entry": [
       "./index.ts",
       "./src/types.ts"
@@ -99,8 +99,11 @@
     "outDir": "./build",
     "clean": true,
     "format": "esm",
+    "minify": "dce-only",
+    "fixedExtension": false,
     "dts": false,
-    "sourcemap": false,
+    "treeshake": false,
+    "sourcemaps": false,
     "target": "esnext"
   },
   "release-it": {
