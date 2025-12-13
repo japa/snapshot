@@ -96,6 +96,9 @@
       "./index.ts",
       "./src/types.ts"
     ],
+    "external": [
+      "expect"
+    ],
     "outDir": "./build",
     "clean": true,
     "format": "esm",
