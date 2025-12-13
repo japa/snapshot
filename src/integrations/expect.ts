@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import { expect, MatcherFunction } from 'expect'
+import { expect, type MatcherFunction } from 'expect'
 import { PluginContext } from '../plugin_context.js'
 
 /**

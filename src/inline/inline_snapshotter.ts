@@ -10,7 +10,7 @@
 import dedent from 'dedent'
 import type { Test } from '@japa/runner/core'
 import { readFile, writeFile } from 'node:fs/promises'
-import { Frame, getStackTraceLines } from 'jest-message-util'
+import { type Frame, getStackTraceLines } from 'jest-message-util'
 
 import type { InlineSnapshotData } from '../types.js'
 import { InlineSnapshotInserter } from './inline_snapshot_inserter.js'

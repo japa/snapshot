@@ -9,9 +9,9 @@
 
 import { sep } from 'node:path'
 import StackUtils from 'stack-utils'
-import { Frame } from 'jest-message-util'
+import { type Frame } from 'jest-message-util'
 import { createRequire } from 'node:module'
-import { PrettyFormatOptions } from 'pretty-format'
+import { type PrettyFormatOptions } from 'pretty-format'
 import { format as prettyFormat } from 'pretty-format'
 
 /**
